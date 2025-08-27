@@ -1,0 +1,106 @@
+{
+  "name": "vscode-issue-filer",
+  "displayName": "VS Code Issue Filer",
+  "description": "Streamlined tool for filing VS Code bug reports with screenshots",
+  "version": "0.0.1",
+  "publisher": "mrleemurray",
+  "license": "MIT",
+  "homepage": "https://github.com/mrleemurray/vscode-issue-filer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrleemurray/vscode-issue-filer"
+  },
+  "bugs": {
+    "url": "https://github.com/mrleemurray/vscode-issue-filer/issues"
+  },
+  "keywords": [
+    "bug",
+    "issue",
+    "github",
+    "report",
+    "filing",
+    "vscode",
+    "screenshot",
+    "workflow"
+  ],
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "icon.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-issue-filer.fileIssue",
+        "title": "File VS Code Issue",
+        "icon": "$(bug)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "vscode-issue-filer.fileIssue",
+          "when": "true",
+          "group": "navigation"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "vscode-issue-filer.fileIssue",
+          "when": "true",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "vscode-issue-filer.fileIssue"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "vscode-issue-filer.fileIssue",
+        "key": "ctrl+alt+b",
+        "mac": "cmd+alt+b"
+      }
+    ],
+    "configuration": {
+      "title": "VS Code Issue Filer",
+      "properties": {
+        "vscode-issue-filer.defaultAssignee": {
+          "type": "string",
+          "default": "your_github_username",
+          "description": "Default GitHub username to assign new issues to"
+        },
+        "vscode-issue-filer.targetRepositories": {
+          "type": "string",
+          "default": "microsoft/vscode\nmicrosoft/vscode-docs",
+          "description": "GitHub repositories to choose from when filing issues (one per line, format: owner/repo)",
+          "editPresentation": "multilineText"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.80.0",
+    "@vscode/test-electron": "^2.5.2",
+    "mocha": "^11.7.1",
+    "typescript": "^5.1.6"
+  }
+}
