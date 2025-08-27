@@ -66,8 +66,8 @@
     "keybindings": [
       {
         "command": "vscode-issue-filer.fileIssue",
-        "key": "ctrl+alt+b",
-        "mac": "cmd+alt+b"
+        "key": "ctrl+alt+'",
+        "mac": "cmd+alt+'"
       }
     ],
     "configuration": {

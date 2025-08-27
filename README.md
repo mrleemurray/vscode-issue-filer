@@ -5,7 +5,7 @@ A streamlined VS Code extension to help users quickly file bug reports for VS Co
 ## Features
 
 - **Quick Issue Filing**: Bug icon appears in status bar on VS Code startup for easy access
-- **Keyboard Shortcut**: Quick access with `Ctrl+Alt+B` (Windows/Linux) or `Cmd+Alt+B` (macOS)
+- **Keyboard Shortcut**: Quick access with `Ctrl+Alt+'` (Windows/Linux) or `Cmd+Alt+'` (macOS)
 - **Guided Workflow**: Step-by-step process to capture issue details
 - **Optional Description**: Add additional context with an optional description field
 - **UX Bug Detection**: Automatically adds "ux" label for design/UX related issues
@@ -17,7 +17,7 @@ A streamlined VS Code extension to help users quickly file bug reports for VS Co
 ## Usage
 
 1. **Start the workflow** using any of these methods:
-   - **Keyboard shortcut**: `Ctrl+Alt+B` (Windows/Linux) or `Cmd+Alt+B` (macOS)
+   - **Keyboard shortcut**: `Ctrl+Alt+'` (Windows/Linux) or `Cmd+Alt+'` (macOS)
    - **Status bar**: Click the "File Issue" button (right side)
    - **Editor toolbar**: Click the bug icon
    - **Command Palette**: Run "File VS Code Issue"
@@ -70,7 +70,7 @@ npm test
 ## Menu Locations
 
 The "File VS Code Issue" command can be accessed from:
-- **Keyboard shortcut**: `Ctrl+Alt+B` (Windows/Linux) or `Cmd+Alt+B` (macOS)
+- **Keyboard shortcut**: `Ctrl+Alt+'` (Windows/Linux) or `Cmd+Alt+'` (macOS)
 - **Status bar** (File Issue - right side)
 - Editor title bar (bug icon)
 - View title bars (bug icon)
@@ -102,7 +102,7 @@ You can customize the extension behavior through VS Code settings:
 
 ### Keyboard Shortcut
 
-The default keyboard shortcut is `Ctrl+Alt+B` (Windows/Linux) or `Cmd+Alt+B` (macOS). To customize it:
+The default keyboard shortcut is `Ctrl+Alt+'` (Windows/Linux) or `Cmd+Alt+'` (macOS). To customize it:
 
 1. **Open Keyboard Shortcuts**: `Ctrl+K Ctrl+S` / `Cmd+K Cmd+S`
 2. **Search**: Type "File VS Code Issue" or "vscode-issue-filer.fileIssue"
