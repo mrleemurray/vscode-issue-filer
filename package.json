@@ -1,8 +1,8 @@
 {
-  "name": "vscode-issue-filer",
-  "displayName": "VS Code Issue Filer",
-  "description": "Streamlined tool for filing VS Code bug reports with screenshots",
-  "version": "0.0.1",
+  "name": "issue-filer",
+  "displayName": "Issue Filer",
+  "description": "Streamlined tool for filing bug reports with screenshots",
+  "version": "0.0.3",
   "publisher": "mrleemurray",
   "license": "MIT",
   "homepage": "https://github.com/mrleemurray/vscode-issue-filer",
@@ -38,7 +38,7 @@
     "commands": [
       {
         "command": "vscode-issue-filer.fileIssue",
-        "title": "File VS Code Issue",
+        "title": "File Issue",
         "icon": "$(bug)"
       }
     ],
@@ -71,7 +71,7 @@
       }
     ],
     "configuration": {
-      "title": "VS Code Issue Filer",
+      "title": "Issue Filer",
       "properties": {
         "vscode-issue-filer.defaultAssignee": {
           "type": "string",

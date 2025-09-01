@@ -1,12 +1,12 @@
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-	console.log('VS Code Issue Filer is now active!');
+	console.log('Issue Filer is now active!');
 
 	// Create status bar item (high priority to appear leftmost on right side)
 	const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 1000);
 	statusBarItem.text = "$(bug) File Issue";
-	statusBarItem.tooltip = "File VS Code Bug Report";
+	statusBarItem.tooltip = "File Bug Report";
 	statusBarItem.command = 'vscode-issue-filer.fileIssue';
 	statusBarItem.show();
 
@@ -25,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 async function fileIssueWorkflow() {
 	// Step 1: Get issue title from user
 	const title = await vscode.window.showInputBox({
-		prompt: 'Enter the title for your VS Code bug report',
+		prompt: 'Enter the title for your bug report',
 		placeHolder: 'e.g., Terminal cursor disappears after switching themes',
 		validateInput: (value: string) => {
 			if (!value || value.trim().length === 0) {
@@ -125,7 +125,7 @@ async function fileIssueWorkflow() {
 			},
 			{
 				label: 'No, leave unassigned',
-				description: 'Let the VS Code team assign as needed',
+				description: 'Let someone else assign as needed',
 				detail: 'Issue will be triaged by maintainers'
 			}
 		],

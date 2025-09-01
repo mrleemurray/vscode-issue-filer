@@ -1,6 +1,6 @@
-# VS Code Issue Filer
+# Issue Filer
 
-A streamlined VS Code extension to help users quickly file bug reports for VS Code with screenshots.
+A streamlined VS Code extension to help users quickly file bug reports with screenshots.
 
 ## Features
 
@@ -70,6 +70,7 @@ npm test
 ## Menu Locations
 
 The "File VS Code Issue" command can be accessed from:
+
 - **Keyboard shortcut**: `Ctrl+Alt+'` (Windows/Linux) or `Cmd+Alt+'` (macOS)
 - **Status bar** (File Issue - right side)
 - Editor title bar (bug icon)
@@ -79,6 +80,7 @@ The "File VS Code Issue" command can be accessed from:
 ## Generated Issue Template
 
 The extension generates a comprehensive issue template including:
+
 - Bug description and title
 - Optional detailed description (if provided)
 - Step-by-step reproduction instructions
@@ -92,6 +94,7 @@ The extension generates a comprehensive issue template including:
 ## UX Bug Labeling
 
 When you identify an issue as UX/Design related:
+
 - The GitHub issue will automatically include the "ux" label
 - A special UX/Design context section is added to the issue template
 - This helps the VS Code team properly triage design and user experience issues
@@ -102,10 +105,10 @@ You can customize the extension behavior through VS Code settings:
 
 ### Keyboard Shortcut
 
-The default keyboard shortcut is `Ctrl+Alt+'` (Windows/Linux) or `Cmd+Alt+'` (macOS). To customize it:
+The default keyboard shortcut is `Ctrl+Alt+'` (Windows/Linux) or `Cmd+Option+'` (macOS). To customize it:
 
 1. **Open Keyboard Shortcuts**: `Ctrl+K Ctrl+S` / `Cmd+K Cmd+S`
-2. **Search**: Type "File VS Code Issue" or "vscode-issue-filer.fileIssue"
+2. **Search**: Type "File Issue" or "vscode-issue-filer.fileIssue"
 3. **Change**: Click the pencil icon and press your desired key combination
 
 Or edit your `keybindings.json` directly:
@@ -117,16 +120,19 @@ Or edit your `keybindings.json` directly:
 ```
 
 ### `vscode-issue-filer.defaultAssignee`
+
 - **Type**: `string`
 - **Default**: `"mrleemurray"`
 - **Description**: GitHub username to automatically assign new issues to
 
 ### `vscode-issue-filer.targetRepositories`
+
 - **Type**: `string` (multiline)
 - **Default**: `"microsoft/vscode\nmicrosoft/vscode-docs"`
 - **Description**: GitHub repositories to choose from when filing issues (one per line, format: owner/repo)
 
 To customize these settings, add them to your VS Code settings:
+
 ```json
 {
   "vscode-issue-filer.defaultAssignee": "your-github-username",
@@ -135,11 +141,13 @@ To customize these settings, add them to your VS Code settings:
 ```
 
 **Repository Selection:**
+
 - If only one repository is configured, it will be used automatically
 - If multiple repositories are configured, you'll be prompted to choose during the workflow
 - Each repository should be on a separate line in the format `owner/repo`
 
 **Examples of repositories:**
+
 - `microsoft/vscode` - VS Code main repository
 - `microsoft/vscode-docs` - VS Code documentation
 - `your-org/your-repo` - Your own repository
