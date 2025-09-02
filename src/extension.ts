@@ -189,7 +189,19 @@ Please attach your screenshot by dragging and dropping it into the issue descrip
 	// Step 7: Generate GitHub issue URL with populated template
 	const issueBody = generateIssueBody(title, description, screenshotInstructions, isUX);
 	
-	let githubUrl = `https://github.com/${selectedRepo}/issues/new?template=bug_report.md&title=${encodeURIComponent(title)}&body=${encodeURIComponent(issueBody)}`;
+	// Custom encoding function that preserves ? and ! but encodes other necessary characters
+	function customEncode(str: string): string {
+		return str
+			.replace(/ /g, '%20')        // Encode spaces
+			.replace(/&/g, '%26')        // Encode ampersands
+			.replace(/#/g, '%23')        // Encode hash symbols
+			.replace(/\+/g, '%2B')       // Encode plus signs
+			.replace(/\n/g, '%0A')       // Encode newlines
+			.replace(/\r/g, '%0D');      // Encode carriage returns
+		// Note: We deliberately DON'T encode ? and ! to preserve them
+	}
+	
+	let githubUrl = `https://github.com/${selectedRepo}/issues/new?template=bug_report.md&title=${customEncode(title)}&body=${customEncode(issueBody)}`;
 	
 	// Add assignee if user chose to assign themselves
 	if (shouldAssign) {
@@ -208,7 +220,7 @@ Please attach your screenshot by dragging and dropping it into the issue descrip
 
 	// Show success message
 	vscode.window.showInformationMessage(
-		'GitHub issue page opened! Please review and submit your bug report.',
+		'GitHub issue page opened. Please review and submit your bug report.',
 		'View All Issues'
 	).then((selection: string | undefined) => {
 		if (selection === 'View All Issues') {
@@ -278,7 +290,7 @@ If the basic steps above are not sufficient, provide more detailed reproduction 
 
 
 ---
-This issue was filed using the VS Code Issue Filer extension`;
+This issue was filed using the Issue Filer extension`;
 }
 
 function getOSDisplayName(platform: string): string {
