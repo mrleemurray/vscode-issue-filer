@@ -141,8 +141,8 @@ async function fileIssueWorkflow() {
 
 	const shouldAssign = shouldAssignSelf.label.includes('assign to me');
 
-	// Step 6: Prompt for screenshot
-	const shouldTakeScreenshot = await vscode.window.showQuickPick(
+	// Step 6: Prompt for screenshot or screen recording
+	const mediaChoice = await vscode.window.showQuickPick(
 		[
 			{
 				label: 'Take Screenshot',
@@ -150,23 +150,28 @@ async function fileIssueWorkflow() {
 				detail: 'This will help maintainers understand the issue visually'
 			},
 			{
-				label: 'Skip Screenshot',
-				description: 'Continue without a screenshot',
-				detail: 'You can add images manually to the issue later'
+				label: 'Record Screen',
+				description: 'Capture a screen recording using gifcap.dev',
+				detail: 'Useful for showing dynamic issues or step-by-step reproduction'
+			},
+			{
+				label: 'Skip Media',
+				description: 'Continue without a screenshot or recording',
+				detail: 'You can add images/videos manually to the issue later'
 			}
 		],
 		{
-			placeHolder: 'Would you like to take a screenshot of the bug?',
+			placeHolder: 'Would you like to capture media for this bug?',
 			canPickMany: false
 		}
 	);
 
-	if (!shouldTakeScreenshot) {
+	if (!mediaChoice) {
 		return; // User cancelled
 	}
 
 	let screenshotInstructions = '';
-	if (shouldTakeScreenshot.label.includes('Take Screenshot')) {
+	if (mediaChoice.label.includes('Take Screenshot')) {
 		// Simple confirmation that user will take a screenshot
 		const proceed = await vscode.window.showInformationMessage(
 			'Take your screenshot now, then click Continue to open the GitHub issue.',
@@ -182,6 +187,31 @@ async function fileIssueWorkflow() {
 
 Screenshot:
 Please attach your screenshot by dragging and dropping it into the issue description area below.
+
+`;
+	} else if (mediaChoice.label.includes('Record Screen')) {
+		// Open gifcap.dev for screen recording using Simple Browser to avoid external link dialog
+		try {
+			await vscode.commands.executeCommand('simpleBrowser.show', 'https://gifcap.dev/');
+		} catch (error) {
+			// Fallback to external browser if Simple Browser is not available
+			await vscode.env.openExternal(vscode.Uri.parse('https://gifcap.dev/'));
+		}
+		
+		const proceed = await vscode.window.showInformationMessage(
+			'Gifcap.dev has been opened. Record your screen, then click Continue to open the GitHub issue.',
+			'Continue',
+			'Cancel'
+		);
+
+		if (proceed !== 'Continue') {
+			return;
+		}
+
+		screenshotInstructions = `
+
+Screen Recording:
+Please attach your screen recording by dragging and dropping it into the issue description area below.
 
 `;
 	}
